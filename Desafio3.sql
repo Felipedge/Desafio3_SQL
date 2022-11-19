@@ -28,3 +28,10 @@ INSERT INTO post (titulo, contenido, fecha_creacion, fecha_actualizacion, destac
 --se crea tabla comentarios
 R: CREATE TABLE comentarios (id SERIAL, contenido TEXT, fecha_creacion TIMESTAMP, usuario_id BIGINT, post_id BIGINT);
 
+--se agregan datots a tabla cpmentarios
+R:
+INSERT INTO comentarios (contenido, fecha_creacion, usuario_id, post_id) values ();
+INSERT INTO comentarios (contenido, fecha_creacion, usuario_id, post_id) values ();
+INSERT INTO comentarios (contenido, fecha_creacion, usuario_id, post_id) values ();
+INSERT INTO comentarios (contenido, fecha_creacion, usuario_id, post_id) values ();
+INSERT INTO comentarios (contenido, fecha_creacion, usuario_id, post_id) values ();
