@@ -48,6 +48,23 @@ SELECT usuarios.id, post.titulo, post.contenido FROM post INNER JOIN usuarios ON
 
 --Cuenta la cantidad de posts de cada usuario. La tabla resultante debe mostrar el id e email del usuario junto con la cantidad de posts de cada usuario. (1 Punto)
 
-SELECT usuarios.id, usuarios.email, count(post.id) FROM usuarios LEFT JOIN post ON usuarios.id = post.usuario_id GROUP BY usuarios.id, usuarios.email;
+SELECT usuarios.id, usuarios.email, COUNT(post.id) FROM usuarios LEFT JOIN post ON usuarios.id = post.usuario_id GROUP BY usuarios.id, usuarios.email;
 
---
+--Muestra el email del usuario que ha creado más posts. Aquí la tabla resultante tiene un único registro y muestra solo el email. (1 Punto)
+
+SELECT usuarios.email FROM usuarios INNER JOIN post ON usuarios.id = post.id GROUP BY usuarios.email ORDER BY COUNT (post.id) DESC;
+
+--Muestra la fecha del último post de cada usuario. (1 Punto)
+
+SELECT nombre, MAX(fecha_creacion) FROM (SELECT post.contenido, post.fecha_creacion, usuarios.nombre FROM usuarios INNER JOIN post ON usuarios.id = post.usuario_id) AS fechaMAX GROUP BY nombre;
+
+--Muestra el título y contenido del post (artículo) con más comentarios. (1 Punto)
+
+SELECT post.titulo, post.contenido FROM post INNER JOIN ( SELECT post_id, COUNT(comentarios.post_id) AS cantidad FROM comentarios GROUP BY comentarios.post_id ORDER BY cantidad DESC LIMIT 1) ON post.id = post_id;
+
+--Muestra en una tabla el título de cada post, el contenido de cada post y el contenid de cada comentario asociado a los posts mostrados, junto con el email del usuarioque lo escribió. (1 Punto)
+
+SELECT post.titulo, post.contenido, comentarios.contenido, usuarios.email FROM comentarios INNER JOIN post ON comentarios.post_id = post.id INNER JOIN usuarios ON usuarios.id = comentarios.id;
+
+--Muestra el contenido del último comentario de cada usuario. (1 Punto
+
