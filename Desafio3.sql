@@ -68,3 +68,8 @@ SELECT post.titulo, post.contenido, comentarios.contenido, usuarios.email FROM c
 
 --Muestra el contenido del último comentario de cada usuario. (1 Punto
 
+SELECT comentarios.fecha_creacion, comentarios.contenido, comentarios.usuario_id FROM comentarios INNER JOIN usuarios ON comentarios.usuario_id = usuarios.id WHERE fecha_creacion = (SELECT MAx(fecha_creacion) FROM comentarios)
+
+--Muestra los emails de los usuarios que no han escrito ningún comentario. (1 Punto)
+
+SELECT usuarios.email FROM usuarios  LEFT JOIN post  ON usuarios.id = post.usuario_id GROUP BY usuarios.email HAVING COUNT(post.id) = 0;
